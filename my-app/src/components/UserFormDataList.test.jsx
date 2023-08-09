@@ -20,7 +20,7 @@ jest.mock("react-redux", () => ({
 describe("UserFormDataList", () => {
   it("should render table correctly", () => {
     render(<UserFormDataList />);
-    // console.log(screen.debug());
+
     expect(screen.getByText("John")).toBeInTheDocument();
     expect(screen.getByText("Doe")).toBeInTheDocument();
     expect(screen.getByText("john@doe.com")).toBeInTheDocument();
@@ -32,10 +32,5 @@ describe("UserFormDataList", () => {
     render(<UserFormDataList />);
 
     expect(screen.queryByRole("table")).not.toBeInTheDocument();
-    // console.log(screen.debug());
-    // expect(screen.getByText("John")).toBeInTheDocument();
-    // expect(screen.getByText("Doe")).toBeInTheDocument();
-    // expect(screen.getByText("john@doe.com")).toBeInTheDocument();
-    // expect(screen.getByText("Hello")).toBeInTheDocument();
   });
 });

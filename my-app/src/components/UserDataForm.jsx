@@ -1,4 +1,3 @@
-import React from "react";
 import { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { trim, isLength, isEmail } from "validator";
