@@ -38,6 +38,11 @@ const validateInput = (input) => {
 function App() {
   const [inputErrors, setInputErrors] = useState({});
 
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const emailRef = useRef();
+  const messageRef = useRef();
+
   const dispatch = useDispatch();
 
   const formValuesRef = useRef({});
@@ -47,6 +52,11 @@ function App() {
     dispatch({
       type: ADD_USER_FORM_DATA,
       payload: formValuesRef.current,
+    });
+
+    formValuesRef.current = {};
+    [firstNameRef, lastNameRef, emailRef, messageRef].forEach((ref) => {
+      ref.current = "";
     });
   };
 
@@ -71,24 +81,28 @@ function App() {
       <Input
         label="First Name"
         name={FIRST_NAME}
+        ref={firstNameRef}
         onChange={handleInputChange}
         errorMessage={inputErrors[FIRST_NAME]}
       />
       <Input
         label="Last Name"
         name={LAST_NAME}
+        ref={lastNameRef}
         onChange={handleInputChange}
         errorMessage={inputErrors[LAST_NAME]}
       />
       <Input
         label="Email"
         name={EMAIL}
+        ref={emailRef}
         onChange={handleInputChange}
         errorMessage={inputErrors[EMAIL]}
       />
       <Input
         label="Message"
         name={MESSAGE}
+        ref={messageRef}
         onChange={handleInputChange}
         errorMessage={inputErrors[MESSAGE]}
       />
