@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const UserFormDataList = () => {
   const userFormData = useSelector((state) => state.userFormData);
 
-  return (
+  return userFormData.length ? (
     <table>
       <tr>
         <th>First Name</th>
@@ -21,7 +21,7 @@ const UserFormDataList = () => {
         </tr>
       ))}
     </table>
-  );
+  ) : null;
 };
 
 export default memo(UserFormDataList);
