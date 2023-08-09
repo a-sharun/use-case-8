@@ -4,6 +4,7 @@ import { trim, isLength, isEmail } from "validator";
 import Input from "./components/Input";
 import { ADD_USER_FORM_DATA } from "./store/reducers/userFormDataReducer";
 import store from "./store";
+import UserFormDataList from "./components/UserFormDataList";
 
 const FIRST_NAME = "firstName";
 const LAST_NAME = "lastName";
@@ -56,7 +57,7 @@ function App() {
 
     formValuesRef.current = {};
     [firstNameRef, lastNameRef, emailRef, messageRef].forEach((ref) => {
-      ref.current = "";
+      ref.current.value = "";
     });
   };
 
@@ -64,7 +65,6 @@ function App() {
   const areFormValues = Object.values(formValuesRef.current).length === 4;
 
   const handleInputChange = useCallback((event) => {
-    console.log(store.getState());
     const { name, value } = event.target;
     const inputValidationResult = validateInput({ name, value });
 
@@ -77,39 +77,42 @@ function App() {
   }, []);
 
   return (
-    <form onSubmit={onFormSubmit}>
-      <Input
-        label="First Name"
-        name={FIRST_NAME}
-        ref={firstNameRef}
-        onChange={handleInputChange}
-        errorMessage={inputErrors[FIRST_NAME]}
-      />
-      <Input
-        label="Last Name"
-        name={LAST_NAME}
-        ref={lastNameRef}
-        onChange={handleInputChange}
-        errorMessage={inputErrors[LAST_NAME]}
-      />
-      <Input
-        label="Email"
-        name={EMAIL}
-        ref={emailRef}
-        onChange={handleInputChange}
-        errorMessage={inputErrors[EMAIL]}
-      />
-      <Input
-        label="Message"
-        name={MESSAGE}
-        ref={messageRef}
-        onChange={handleInputChange}
-        errorMessage={inputErrors[MESSAGE]}
-      />
-      <button type="submit" disabled={areFormErrors || !areFormValues}>
-        Submit
-      </button>
-    </form>
+    <>
+      <form onSubmit={onFormSubmit}>
+        <Input
+          label="First Name"
+          name={FIRST_NAME}
+          ref={firstNameRef}
+          onChange={handleInputChange}
+          errorMessage={inputErrors[FIRST_NAME]}
+        />
+        <Input
+          label="Last Name"
+          name={LAST_NAME}
+          ref={lastNameRef}
+          onChange={handleInputChange}
+          errorMessage={inputErrors[LAST_NAME]}
+        />
+        <Input
+          label="Email"
+          name={EMAIL}
+          ref={emailRef}
+          onChange={handleInputChange}
+          errorMessage={inputErrors[EMAIL]}
+        />
+        <Input
+          label="Message"
+          name={MESSAGE}
+          ref={messageRef}
+          onChange={handleInputChange}
+          errorMessage={inputErrors[MESSAGE]}
+        />
+        <button type="submit" disabled={areFormErrors || !areFormValues}>
+          Submit
+        </button>
+      </form>
+      <UserFormDataList />
+    </>
   );
 }
 
