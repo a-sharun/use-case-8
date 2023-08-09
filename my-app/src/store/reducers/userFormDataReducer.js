@@ -1,18 +1,9 @@
-const UPDATE_USER_FORM_DATA = "UPDATE_USER_FORM_DATA";
-const initialUserFormData = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  message: "",
-};
+export const ADD_USER_FORM_DATA = "ADD_USER_FORM_DATA";
 
-const userFormDataReducer = (state = initialUserFormData, action) => {
-  if (action.type !== UPDATE_USER_FORM_DATA) return state;
+const userFormDataReducer = (state = [], action) => {
+  if (action.type !== ADD_USER_FORM_DATA) return state;
 
-  return {
-    ...state,
-    userFormData: { ...state.userFormData, ...action.payload },
-  };
+  return [...state, action.payload];
 };
 
 export { userFormDataReducer };
